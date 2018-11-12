@@ -5,11 +5,11 @@
 ##### Downloading OID_V4 dataset
 To download specific classes from OPEN IMAGES Dataset, clone the script from https://github.com/EscVM/OIDv4_ToolKit.
 
-After you clone, replace OIDv4_Toolkit/modules/downloader.py with CDCA\datasets\SSD\dataset_tools\OpenImages\downloader.py
+After you clone, replace **OIDv4_Toolkit/modules/downloader.py with CDCA\datasets\SSD\dataset_tools\OpenImages\downloader.py**
 
-Copy classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv files from CDCA\datasets\SSD\dataset_tools\OpenImages\ to OIDv4_Toolkit/OID/csv_folder/
+Copy **classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv** files from **CDCA\datasets\SSD\dataset_tools\OpenImages\** to **OIDv4_Toolkit/OID/csv_folder/**
 
-From ./OIDv4_Toolkit(where main.py is residing) folder use:
+From **./OIDv4_Toolkit**(where main.py is residing) folder use:
 ```
 python3 main.py downloader.py --classes "specify your desired classes here" --type_csv "dataset type"
 ```
@@ -51,15 +51,15 @@ After you download the dataset. Folder format looks like below.
 
 ##### Parsing the dataset
 
-Now Create a new folder called "OID_v4"(Where your datasets are residing).
+Now Create a new folder called **"OID_v4"**(Where your datasets are residing).
 
-Create a subfolder "images" inside "OID_v4"
+Create a subfolder **"images"** inside "OID_v4"
 
-Now copy the downloaded train, validation, test datasets to "OID_v4/images" folder. i;e "/OIDv4_ToolKit/OID/Dataset/train", "/OIDv4_ToolKit/OID/Dataset/test", "/OIDv4_ToolKit/OID/Dataset/validation" to "OID_v4/images"(I copied the folders manually)
+Now copy the downloaded train, validation, test datasets to **"OID_v4/images"** folder. i;e **"/OIDv4_ToolKit/OID/Dataset/train", "/OIDv4_ToolKit/OID/Dataset/test", "/OIDv4_ToolKit/OID/Dataset/validation"** to **"OID_v4/images"**(I copied the folders manually)
 
-Copy "OID.py", "tfrecords.py", "OID_classes_honda.txt", "create_train_TFRecords.sh", "create_val_TFRecords.sh" files from github "/CDCA/datasets/SSD/dataset_tools/OpenImages/" to "OID_v4/images"
+Copy **"OID.py", "tfrecords.py", "OID_classes_honda.txt", "create_train_TFRecords.sh", "create_val_TFRecords.sh"** files from github "/CDCA/datasets/SSD/dataset_tools/OpenImages/" to "OID_v4/images"
 
-After Copying all the required file and folders. Folder "OID_v4" should look like below.
+After Copying all the required file and folders. Folder **"OID_v4"** should look like below.
 
 ```
 --OID_v4
@@ -76,17 +76,20 @@ After Copying all the required file and folders. Folder "OID_v4" should look lik
 
 Now you are ready to parse the dataset. Run the below script to combine train,validation and test datasets and divide them into 70-30% train and val datasets along with the annotations.
 
-From ./OID_v4/
 ```
+#From ./OID_v4/
 Use python OID.py --objlis "Give your desired objects here"
 ```
 
 For CDCA use 
 ```
+#From ./OID_v4/
 python OID.py --objlis 'Drink' 'High_heels' 'Alarm_clock' 'Backpack' 'Ball' 'Beer' 'Bottle' 'Bottle_opener' 'Bowl' 'Box' 'Briefcase' 'Calculator' 'Can_opener' 'Cat' 'Chopsticks' 'Coffee_cup' 'Coin' 'Computer_mouse' 'Crutch' 'Drinking_straw' 'Dumbbell' 'Eraser' 'Face_powder' 'Fast_food' 'Flashlight' 'Flying_disc' 'Footwear' 'Fruit' 'Glove' 'Goggles' 'Hair_dryer' 'Hammer' 'Handbag' 'Hat' 'Headphones' 'Knife' 'Laptop' 'Lipstick' 'Medical_equipment' 'Mobile_phone' 'Mug' 'Musical_instrument' 'Paper_towel' 'Pencil_case' 'Picnic_basket' 'Picture_frame' 'Pillow' 'Plastic_bag' 'Plate' 'Ratchet' 'Ring_binder' 'Scissors' 'Screwdriver' 'Shotgun' 'Snack' 'Sports_equipment' 'Stapler' 'Suitcase' 'Sunglasses' 'Tin_can' 'Toilet_paper' 'Towel' 'Toy' 'Tripod' 'Wrench' 'Axe' 'Binoculars' 'Book' 'Camera' 'Diaper' 'Dog' 'Envelope' 'Facial_tissue_holder' 'Flower' 'Fork' 'Glasses' 'Handgun' 'Helmet' 'Luggage_and_bags' 'Pen' 'Perfume' 'Remote_control' 'Ruler' 'Spoon' 'Tablet_computer' 'Umbrella' 'Vegetable' 'Watch'
 ```
 
-After you execute the OID.py script, you will find new folders created inside "./OID_v4". "./OID_v4" folder format looks like below.
+After you execute the OID.py script, you will find new folders created inside "./OID_v4".
+
+"./OID_v4" folder format looks like below.
 
 ```
 --OID_v4
@@ -114,10 +117,10 @@ After you execute the OID.py script, you will find new folders created inside ".
 
 ##### Creating TFRecords
 
-After you finish parsing the dataset, you need to create TFRecords.
+After you finish parsing the dataset, you need to create **TFRecords**.
 
 ```
-From "./OID_v4"
+#From "./OID_v4"
 Run the shell scripts
 ./create_train_TFRecords.sh
 ./create_val_TFRecords.sh
