@@ -1,8 +1,8 @@
-#This repo contains tools for data parsing for various datasets.
+# This repo contains tools for data parsing for various datasets.
 
-##OPEN IMAGES DATASET
+## OPEN IMAGES DATASET
 
-#####Downloading OID_V4 dataset
+##### Downloading OID_V4 dataset
 To download specific classes from OPEN IMAGES Dataset, clone the script from https://github.com/EscVM/OIDv4_ToolKit.
 After you clone, replace OIDv4_Toolkit/modules/downloader.py with CDCA\datasets\SSD\dataset_tools\OpenImages\downloader.py
 Copy classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv files from CDCA\datasets\SSD\dataset_tools\OpenImages\ to OIDv4_Toolkit/OID/csv_folder/
