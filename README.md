@@ -2,7 +2,7 @@
 
 ## OPEN IMAGES DATASET
 
-##### Downloading OID_V4 dataset
+### Downloading OID_V4 dataset
 To download specific classes from OPEN IMAGES Dataset, clone the script from https://github.com/EscVM/OIDv4_ToolKit.
 
 After you clone, replace **OIDv4_Toolkit/modules/downloader.py** with **CDCA\datasets\SSD\dataset_tools\OpenImages\downloader.py**
@@ -49,7 +49,7 @@ After you download the dataset. Folder format looks like below.
 			   --Example_image1.jpg
 ```
 
-##### Parsing the dataset
+### Parsing the dataset
 
 Now Create a new folder called **"OID_v4"**(Where your datasets are residing).
 
@@ -115,7 +115,7 @@ After you execute the OID.py script, you will find new folders created inside ".
     --create_val_TFRecords.sh
 ```
 
-##### Creating TFRecords
+### Creating TFRecords
 
 After you finish parsing the dataset, you need to create **TFRecords**.
 
