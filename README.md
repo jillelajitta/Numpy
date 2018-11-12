@@ -7,7 +7,7 @@ To download specific classes from OPEN IMAGES Dataset, clone the script from htt
 
 After you clone, replace **OIDv4_Toolkit/modules/downloader.py** with **CDCA\datasets\SSD\dataset_tools\OpenImages\downloader.py**
 
-Download **classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv** from https://storage.googleapis.com/openimages/web/download.html(check section **Subset with Bounding Boxes (600 classes)/ Boxes & Metadata** in the link to download files)
+Download **classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv** files from https://storage.googleapis.com/openimages/web/download.html (check section **Subset with Bounding Boxes (600 classes)/ Boxes & Metadata** in the link to download files)
 
 Copy downloaded files **classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv** to **OIDv4_Toolkit/OID/csv_folder/**
 
