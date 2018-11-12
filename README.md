@@ -48,6 +48,7 @@ After you download the dataset. Folder format looks like below.
 		           --Example_object.txt
 			   --Example_image1.jpg
 ```
+**Note: Please rename "/OIDv4_ToolKit/OID/Dataset/validation" to "/OIDv4_ToolKit/OID/Dataset/val"**
 
 ### Parsing the dataset
 
@@ -55,18 +56,20 @@ Now Create a new folder called **"OID_v4"**(Where your datasets are residing).
 
 Create a subfolder **"images"** inside "OID_v4"
 
-Now copy the downloaded train, validation, test datasets to **"OID_v4/images"** folder. i;e **"/OIDv4_ToolKit/OID/Dataset/train", "/OIDv4_ToolKit/OID/Dataset/test", "/OIDv4_ToolKit/OID/Dataset/validation"** to **"OID_v4/images"**(I copied the folders manually)
+Now copy the downloaded train, validation, test datasets to **"OID_v4/images"** folder. i;e **"/OIDv4_ToolKit/OID/Dataset/train", "/OIDv4_ToolKit/OID/Dataset/test", "/OIDv4_ToolKit/OID/Dataset/val"** to **"OID_v4/images"**(I copied the folders manually)
 
 Copy **"OID.py", "tfrecords.py", "OID_classes_honda.txt", "create_train_TFRecords.sh", "create_val_TFRecords.sh"** files from github "/CDCA/datasets/SSD/dataset_tools/OpenImages/" to "OID_v4/images"
 
 After Copying all the required file and folders. Folder **"OID_v4"** should look like below.
+
+
 
 ```
 --OID_v4
     --images
 	--train
 	--test
-	--validation(please rename this folder name from "validation" to "val")
+	--val
     --OID.py
     --tfrecords.py 
     --OID_classes_honda.txt 
