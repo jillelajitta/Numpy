@@ -7,11 +7,13 @@ To download specific classes from OPEN IMAGES Dataset, clone the script from htt
 
 After you clone, replace **OIDv4_Toolkit/modules/downloader.py** with **CDCA\datasets\SSD\dataset_tools\OpenImages\downloader.py**
 
-Copy **classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv** files from **CDCA\datasets\SSD\dataset_tools\OpenImages** to **OIDv4_Toolkit/OID/csv_folder/**
+Download **classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv** from https://storage.googleapis.com/openimages/web/download.html(check section **Subset with Bounding Boxes (600 classes)/ Boxes & Metadata** in the link to download files)
+
+Copy downloaded files **classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv** to **OIDv4_Toolkit/OID/csv_folder/**
 
 From **./OIDv4_Toolkit**(where main.py is residing) folder use:
 ```
-python3 main.py downloader.py --classes "specify your desired classes here" --type_csv "dataset type"
+python3 main.py downloader --classes "specify your desired classes here" --type_csv "dataset type"
 ```
 
 For CDCA use below scripts for train, validation & test
@@ -72,8 +74,8 @@ After Copying all the required file and folders. Folder **"OID_v4"** should look
 	--val
     --OID.py
     --tfrecords.py 
-    --OID_classes_honda.txt 
-    --create_train_TFRecords.sh 
+    --OID_classes_honda.txt
+    --create_train_TFRecords.sh
     --create_val_TFRecords.sh
 ```
 
