@@ -4,6 +4,7 @@
 
 ##### Downloading OID_V4 dataset
 To download specific classes from OPEN IMAGES Dataset, clone the script from https://github.com/EscVM/OIDv4_ToolKit.
+
 After you clone, replace OIDv4_Toolkit/modules/downloader.py with CDCA\datasets\SSD\dataset_tools\OpenImages\downloader.py
 Copy classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv files from CDCA\datasets\SSD\dataset_tools\OpenImages\ to OIDv4_Toolkit/OID/csv_folder/
 
@@ -22,27 +23,27 @@ Note: There are no images provided for some objects in validation and test datas
 
 After you download the dataset. Folder format looks like below.
 
---OIDv4_Toolkit
-	--images
-	--modules
-	--OID
-	   --csv_folder
-	   --Dataset
-		--train
-		   --Example_object
-		         --Label
-		            --Example_object.txt
-			    --Example_image1.jpg
-		--test
-		   --Example_object
-		         --Label
-		            --Example_object.txt
-			    --Example_image1.jpg
-		--validation
-		   --Example_object
-		         --Label
-		            --Example_object.txt
-			    --Example_image1.jpg
+- --OIDv4_Toolkit
+	- --images
+	- --modules
+	- --OID
+	   - --csv_folder
+	   - --Dataset
+		- --train
+		   - --Example_object
+		         - --Label
+		            - --Example_object.txt
+			    - --Example_image1.jpg
+		- --test
+		   - --Example_object
+		         - --Label
+		            - --Example_object.txt
+			    - --Example_image1.jpg
+		- --validation
+		   - --Example_object
+		         - --Label
+		           -  --Example_object.txt
+			   -  --Example_image1.jpg
 
 Now Create a new folder called "OID_v4"(Where your datasets are residing).
 Create a subfolder "images" inside "OID_v4"
