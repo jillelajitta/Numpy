@@ -7,7 +7,7 @@ To download specific classes from OPEN IMAGES Dataset, clone the script from htt
 
 After you clone, replace **OIDv4_Toolkit/modules/downloader.py** with **CDCA\datasets\SSD\dataset_tools\OpenImages\downloader.py**
 
-Copy **classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv** files from **CDCA\datasets\SSD\dataset_tools\OpenImages\*** to **OIDv4_Toolkit/OID/csv_folder/**
+Copy **classes-descriptions-boxable.csv, train-annotations-bbox.csv, test-annotations-bbox.csv, val-annotations-bbox.csv** files from **CDCA\datasets\SSD\dataset_tools\OpenImages\** to **OIDv4_Toolkit/OID/csv_folder/**
 
 From **./OIDv4_Toolkit**(where main.py is residing) folder use:
 ```
