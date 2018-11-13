@@ -11,6 +11,7 @@ Important Notes:
 3. In order to make everything simple, we convert all the dataset to single “CSV” format for each object.
 
 Desired CSV Annotation format:
+
 Example Dog.csv
 
 | Filename | class | width | Height | xmin | ymin | xmax | ymax |
@@ -18,10 +19,46 @@ Example Dog.csv
 |  A.jpg   |  Dog  |  1080 |  920   |  736 | 876  |  999 |  998 |
 |  B.jpg   |  Dog  |  1080 |  920   |  272 | 290  |  789 |  678 |
 
-		Figure 1 Desired CSV format
-4. Naming Conventions:  Choose a unique name for every object. For example, COCO has object called Cell_phone and OID has object called Mobile_phone. In this case both the objects are same but with a different name. So, you need to choose a unique name for the object either Cell_phone or Mobile_phone. In order to rename the object, you can use rename_class_csv.py. You need to execute this script on final csv file and then use the modified csv file to convert into TFRecords. For example, in COCO dataset you want to rename Cell_phone to Mobile_phone, use rename_class_csv.py with final Cell_phone.csv and you can find Mobile_phone.csv in where Cell_phone.csv is residing. Then use Mobile_phone.csv to convert into TFRecords.
 
-We collected and created customized dataset from COCO, OPENIMAGES V4 and Honda custom data.
+4. Naming Conventions:  Choose a unique name for every object. For example, COCO has object called Cell_phone and OID has object called Mobile_phone. In this case both the objects are same but with a different name. So, you need to choose a unique name for the object either Cell_phone or Mobile_phone. In order to rename the object, you can use rename_class_csv.py. You need to execute this script on final csv file and then use the modified(renamed object) csv file to convert into TFRecords. For example, in COCO dataset you want to rename Cell_phone to Mobile_phone, use rename_class_csv.py with final Cell_phone.csv and you can find newely generated Mobile_phone.csv in where Cell_phone.csv is residing. Then use Mobile_phone.csv to convert into TFRecords.
+
+**Note:** We collected and created customized dataset from COCO, OPENIMAGES V4 and Honda custom data for CDCA.
+
+
+
+
+
+## COCO
+To download COCO dataset, please go to this link https://pjreddie.com/projects/coco-mirror/ and download “2014 Training images [80K/13GB]”, “2014 Val. images [40K/6.2GB], "labels.tgz" and unzip everything.
+
+
+After you download all the required dataset, create a folder called “COCO” with subfolders “images” and “annotations”. Now move unzipped images to “images” folder and unzipped labels to “annotations" folder.
+**Remove “2014” in subfolders names of images and annotations i;e train2104 to train and val2014 to val.**
+
+Please clone all the files from CDCA\datasets\SSD\dataset_tools\COCO and move to “COCO” folder you created.
+
+After moving all the required files and folders **COCO** folder should look like below:
+```
+    --COCO
+	--coco_id.txt
+	--COCO_CDCA_classes.txt
+	--create_CDCA_train_TFRecords.sh
+	--create_CDCA_val_TFRecords.sh
+	--init_csvs_coco_txt_csv.py
+	--img_W_H.py
+	--merge_final_csv.py
+	--tfrecords.py
+	--annotations
+		--train
+		--val
+	--images
+		--train
+		--val
+```
+
+
+
+
 
 
 
