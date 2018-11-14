@@ -18,10 +18,9 @@ Example Dog.csv
 |----------|-------|-------|--------|------|------|------|------|
 |  A.jpg   |  Dog  |  1080 |  920   |  736 | 876  |  999 |  998 |
 |  B.jpg   |  Dog  |  1080 |  920   |  272 | 290  |  789 |  678 |
-                                     fig 1
 
 
-4. Naming Conventions:  Choose a unique name for every object. For example, COCO has object called Cell_phone and OID has object called Mobile_phone. In this case both the objects are same but with a different name. So, you need to choose a unique name for the object either Cell_phone or Mobile_phone. In order to rename the object, you can use rename_class_csv.py. You need to execute this script on final csv file and then use the modified(renamed object) csv file to convert into TFRecords. For example, in COCO dataset you want to rename Cell_phone to Mobile_phone, use rename_class_csv.py with final Cell_phone.csv and you can find newely generated Mobile_phone.csv in where Cell_phone.csv is residing. Then use Mobile_phone.csv to convert into TFRecords.
+4. **Naming Conventions**:  Choose a unique name for every object. For example, COCO has object called Cell_phone and OID has object called Mobile_phone. In this case both the objects are same but with a different name. So, you need to choose a unique name for the object either Cell_phone or Mobile_phone. In order to rename the object, you can use rename_class_csv.py. You need to execute this script on final csv file and then use the modified(renamed object) csv file to convert into TFRecords. For example, in COCO dataset you want to rename Cell_phone to Mobile_phone, use rename_class_csv.py with final Cell_phone.csv and you can find newely generated Mobile_phone.csv in where Cell_phone.csv is residing. Then use Mobile_phone.csv to convert into TFRecords.
 
 **Note:** We collected and created customized dataset from COCO, OPENIMAGES V4 and Honda custom data for CDCA.
 
@@ -30,10 +29,13 @@ Example Dog.csv
 
 
 ## COCO
+
+### Downloading and arranging the dataset
 To download COCO dataset, please go to this link https://pjreddie.com/projects/coco-mirror/ and download “2014 Training images [80K/13GB]”, “2014 Val. images [40K/6.2GB], "labels.tgz" and unzip everything.
 
 
 After you download all the required dataset, create a folder called “COCO” with subfolders “images” and “annotations”. Now move unzipped images to “images” folder and unzipped labels to “annotations" folder.
+
 **Remove “2014” in subfolders names of images and annotations i;e train2104 to train and val2014 to val.**
 
 Please clone all the files from CDCA\datasets\SSD\dataset_tools\COCO and move to “COCO” folder you created.
@@ -57,10 +59,79 @@ After moving all the required files and folders **COCO** folder should look like
 		--val
 ```
 
+Before starting the data parsing, please go to "./COCO/annotations/" & "./COCO/images" and have a look at the format of annotations and images.
 
+### 1 Converting annotations from “txt” to “csv”
 
+In order to modify all the annotations to “CSV” format for each object we use **init_csvs_coco_txt_csv.py**. When you Execute init_csvs_coco_txt_csv.py for “train” and “val”, a new folder called **“init_csvs”** with the subfolders **“init_train”** & **“init_val”** is created and all the “CSV” files are stored in the corresponding folders.
+```
+#From ./COCO/
 
+python init_csvs_coco_txt_csv.py --dataset "./annotations/train/" --type "train"
 
+python init_csvs_coco_txt_csv.py --dataset "./annotations/val/" --type "val"
+
+```
+After you finish converting the annotations from "txt" to "csv", please have a look at annotations in **"./COCO/init_csvs/init_train"** & **"./COCO/init_csvs/init_val"** .You will find height and widths of the images are missing.
+
+### 2 Getting Image widths and heights
+
+In order to get width and height of the image, please use **img_W_H.py**. When you execute this file for “train” and “val”, you will find a new folder named **“img_W_H”** and **“train_coco.csv”** and **“val_coco.csv”** files for corresponding train or val. This csv files contains all the image filenames along with their corresponding width and height.
+
+```
+#From ./COCO/
+
+python img_W_H.py --path "./images/train/" --type "train"
+
+python img_W_H.py --path "./images/val/" --type "val"
+
+```
+
+### 3 Merging initial_csv and img_W_H files
+
+Now using **merge_final_csv.py** merge initial_csv & img_W_H files for corresponding train and val in order to get all the required fields into single csv file for each object. This final CSV files are stored in **final_csv"** folder with corresponding **train** and **val** folders.
+
+```
+#From ./COCO/
+
+python merge_final_csv.py --type "train"
+
+python merge_final_csv.py --type "val"
+
+```
+
+### 4 Renaming object names
+
+For this step please refer to **Naming Conventions** in **Data Collection & Parsing** Section.
+
+For CDCA, we need to rename  mouse to Computer_mouse, remote to Remote_control, cell_phone to Mobile_phone.
+
+```
+python rename_class_csv.py --path "./final_csv/train/" --frm "Cell_phone" --to "Mobile_phone"
+python rename_class_csv.py --path "./final_csv/train/" --frm "Mouse" --to "Computer_mouse"
+python rename_class_csv.py --path "./final_csv/train/" --frm "Remote" --to "Remote_control"
+
+python rename_class_csv.py --path "./final_csv/val/" --frm "Cell_phone" --to "Mobile_phone"
+python rename_class_csv.py --path "./final_csv/val/" --frm "Mouse" --to "Computer_mouse"
+python rename_class_csv.py --path "./final_csv/val/" --frm "Remote" --to "Remote_control"
+
+```
+
+### 5 Converting final csv files to TFRecords
+
+In order to convert CSV to TFRecords you need to have list of objects in a txt file, you can find objects used for CDCA project in **COCO_CDCA_classes.txt** file or you can create your own “txt” file including all your desired objects. You can find all coco object list in coco_id.txt file.
+Create a new folder **TFRecords** along with subfolders **train** and **val** in **COCO** folder. 
+Now we are ready to convert all this final csv files to TFRecords. Using tfrecords.py file, convert all the annotations to TFRecords format.
+
+For CDCA
+```
+#From ./COCO/
+
+./create_CDCA_train_TFRecords.sh
+
+./create_CDCA_val_TFRecords.sh
+```
+After you finish running the shell scripts, you will find all the TFRecords required for the training in **TFRecords** folder. Using this TFRecords you are all set for training.
 
 
 ## OPEN IMAGES DATASET
