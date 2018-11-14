@@ -1,9 +1,6 @@
 # This repo contains tools for data parsing for various datasets.
 
 
-
-
-
 ## Data Collection & Parsing
 Important Notes:
 1. Please open all python scripts and read the instructions carefully.
@@ -34,7 +31,7 @@ Example Dog.csv
 To download COCO dataset, please go to this link https://pjreddie.com/projects/coco-mirror/ and download “2014 Training images [80K/13GB]”, “2014 Val. images [40K/6.2GB], "labels.tgz" and unzip everything.
 
 
-After you download all the required dataset, create a folder called “COCO” with subfolders “images” and “annotations”. Now move unzipped images to “images” folder and unzipped labels to “annotations" folder.
+After you download all the required dataset, create a folder called **COCO** with subfolders **images** and **annotations**. Now move unzipped images to “images” folder and unzipped labels to “annotations" folder.
 
 **Remove “2014” in subfolders names of images and annotations i;e train2104 to train and val2014 to val.**
 
@@ -133,6 +130,38 @@ For CDCA
 ```
 After you finish running the shell scripts, you will find all the TFRecords required for the training in **TFRecords** folder. Using this TFRecords you are all set for training.
 
+After you finished all the above steps. COCO folder looks like this.
+
+```
+    --COCO
+	--coco_id.txt
+	--COCO_CDCA_classes.txt
+	--create_CDCA_train_TFRecords.sh
+	--create_CDCA_val_TFRecords.sh
+	--init_csvs_coco_txt_csv.py
+	--img_W_H.py
+	--no_of_images.py
+	--merge_final_csv.py
+	--tfrecords.py
+	--init_csvs
+		--init_train
+		--init_val
+	--img_W_H
+		--train_coco.csv
+		--val_coco.csv
+	--final_csv
+		--train
+		--val
+	--TFRecords
+		--train
+		--val
+	--Annotations
+		--train Annotations
+		--val Annotations 
+	--Images
+		--train Images
+			--val Images
+```
 
 ## OPEN IMAGES DATASET
 
@@ -268,3 +297,149 @@ Run the shell scripts
 After you finish running the shell scripts you will find train & val TFRecords in "./OID_v4/TFRecords" folder.
 
 Now you are all set for training OPEN IMAGES DATASET.
+
+## Custom dataset
+
+In order to create a custom dataset, select the desired object with different colors and different sizes. Take the pictures of the objects in various angles with a decent camera.
+
+**Downloading Images from google:**
+In order to download images from google for your desired object, please follow this link https://github.com/hardikvasa/google-images-download and follow the instructions.
+
+In order to download more than 100 images for a specific object, please follow Installing the chromedriver (with Selenium) in the above link.
+
+After downloading the images, please check the images manually whether the corrupted images are present or not. If you find corrupted images, please delete it.
+
+###Arranging dataset
+
+After you finish collecting the dataset, create a folder called “Custom_dataset” and copy all the files from github repo \CDCA\datasets\SSD\dataset_tools\Custom_dataset.
+
+Create a folder called **JPEGImages** inside **Custom_dataset** folder and move all the collected images to **JPEGImages**
+
+After arranging everything **Custom_dataset** should like below.
+
+```
+--Custom_dataset
+	--JPEGImages
+		--A.jpg
+		--B.jpg
+	--change_file_extension.py
+	--FrameFix.py
+	--FrameTag.py
+	--GenValid.py
+	--movesimages.py
+	--tfrecords.py
+	--xml_to_csv.py
+	--custom_classes.txt
+```
+
+### 1.Image format
+
+We follow “jpg” format for images. Use **change_file_extension.py** to change the custom images to “jpg” format.
+
+```
+#From ./Custom_dataset
+
+Example: python change_file_extension.py --frm JPG --to jpg --folder './JPEGImages/'
+```
+
+### 2.Image tagging
+After you collect the dataset, you are ready to tag and create the annotations. To tag the pictures please use annotation tool **FrameTag.py**.
+
+```
+#From ./Custom_dataset
+
+python FrameTag.py
+
+```
+
+### 3.Moving Images
+While tagging if you close the tagging tool accidentally or you close the tagging tool before you finish tagging all the images, there will be mismatch in no.of annotations to no.of.images. In order to overcome mismatch use **movesimages.py** and restart the tagging.
+
+```
+#From ./Custom_dataset
+
+python **moveimages.py**
+```
+
+**Note:** After you finsh tagging all the images please move all the images from **Parsed_Images** back to **JPEGImages**
+
+### 4.Custom_classes.txt
+**Custom_classes.txt**, please include all the objects you tagged in this file.
+
+
+### 5.Validating Annotations 
+FrameTag.py annotation tool generates the annotations in “xml” format. In order to validate the Tagged annotations use **FrameFix.py**, after you execute this file you will see two new folders **“Corrupted_Annotations”** & **“Corrupted_Images”** along with Corrupted Annotations and Images in it. The corrupted annotations should be excluded from training otherwise you might get issues during training.
+
+```
+#From ./Custom_dataset
+
+python FrameFix.py --folder "./Annotations/"
+
+```
+
+### 6.Dividing the dataset into Train, validation.
+After validating the Annotations, you need to divide the dataset into train and validation set. Use **GenValid.py** script to do this task. After executing GenValid.py file, you will find train and val folders along with images & annotations in it.
+
+```
+#From ./Custom_dataset
+
+python GenValid.py --output "./Validation/" --dataset "./JPEGImages/" --annotations "./Annotations/" --percentage 0.3
+
+```
+
+### 7.Converting XML to CSV
+After generating train and validation sets, you need to convert them into “csv” format. Use **xml_to_csv.py** to do this task. After executing the script you will find a new folder **“final_csv”** along with **train** and **validation** csv files in it. This CSV files are used to convert into TFRecords.
+
+``` 
+#From ./Custom_dataset
+
+python -obj "./train/"
+
+python -obj "./val/"
+
+### 8.CSV to TFRecords
+Now we need to convert these csv files into TFRecords, use **tfrecords.py** file finish this task. 
+
+Create a new folder **TFRecords** along with subfolders **train** and **val** in **Custom_dataset** folder manually. 
+
+```
+#From ./Custom_dataset
+
+python tfrecords.py --csv_input=train.csv  --output_path=train.record --im_path ./train/
+
+python tfrecords.py --csv_input=val.csv  --output_path=val.record --im_path ./val/
+```
+After executing **tfrecords.py**, you will find **tfrecords** in **TFRecords** folder.
+
+After you finish the above procedures, Custom_dataset folder looks like below.
+
+```
+Custom_dataset
+	--JPEGImages
+		--A.jpg
+		--B.jpg
+	--Annotations
+	             --A.xml
+	             --B.xml
+	--TFRecords
+		--train
+		--val
+	--final_csv
+		--train.csv
+		--test.csv
+	--train
+	--val
+	--change_file_extension.py
+	--FrameFix.py
+	--FrameTag.py
+	--GenValid.py
+	--movesimages.py
+	--tfrecords.py
+	--xml_to_csv.py
+	--custom_classes.txt
+```
+
+Now everything is ready to start the training.
+
+**Note:** For maintaing the dataset folders clean, after finishing all the above procedures, craete a folder **Tagged date** for ex: "Sep11", move manually **JPEGImages, Annotations, TFRecords, final_csv, train, val** folders to the **Tagged date** folder.
+
