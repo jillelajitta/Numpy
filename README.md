@@ -17,7 +17,7 @@ Example Dog.csv
 |  B.jpg   |  Dog  |  1080 |  920   |  272 | 290  |  789 |  678 |
 
 
-4. **Naming Conventions**:  Choose a unique name for every object. For example, COCO has object called Cell_phone and OID has object called Mobile_phone. In this case both the objects are same but with a different name. So, you need to choose a unique name for the object either Cell_phone or Mobile_phone. In order to rename the object, you can use rename_class_csv.py. You need to execute this script on final csv file and then use the modified(renamed object) csv file to convert into TFRecords. For example, in COCO dataset you want to rename Cell_phone to Mobile_phone, use rename_class_csv.py with final Cell_phone.csv and you can find newely generated Mobile_phone.csv in where Cell_phone.csv is residing. Then use Mobile_phone.csv to convert into TFRecords.
+4. **Naming Conventions**:  Choose a unique name for every object. For example, COCO has object called Cell_phone and OID has object called Mobile_phone. In this case both the objects are same but with a different name. So, you need to choose a unique name for the object either Cell_phone or Mobile_phone. In order to rename the object, you can use rename_class_csv.py. You need to execute this script on final csv file and then use the modified(renamed object) csv file to convert into TFRecords. For example, in COCO dataset you want to rename Cell_phone to Mobile_phone, use **rename_class_csv.py** with final Cell_phone.csv and you can find newely generated Mobile_phone.csv in where Cell_phone.csv is residing. Then use Mobile_phone.csv to convert into TFRecords.
 
 **Note:** We collected and created customized dataset from COCO, OPENIMAGES V4 and Honda custom data for CDCA.
 
@@ -160,7 +160,7 @@ After you finished all the above steps. COCO folder looks like this.
 		--val Annotations 
 	--Images
 		--train Images
-			--val Images
+		--val Images
 ```
 
 ## OPEN IMAGES DATASET
