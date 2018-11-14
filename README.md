@@ -121,7 +121,7 @@ python rename_class_csv.py --path "./final_csv/val/" --frm "Remote" --to "Remote
 
 In order to convert CSV to TFRecords you need to have list of objects in a txt file, you can find objects used for CDCA project in **COCO_CDCA_classes.txt** file or you can create your own “txt” file including all your desired objects. You can find all coco object list in coco_id.txt file.
 Create a new folder **TFRecords** along with subfolders **train** and **val** in **COCO** folder. 
-Now we are ready to convert all this final csv files to TFRecords. Using tfrecords.py file, convert all the annotations to TFRecords format.
+Now we are ready to convert all this final csv files to TFRecords. Using **tfrecords.py** file, convert all the annotations to TFRecords format.
 
 For CDCA
 ```
