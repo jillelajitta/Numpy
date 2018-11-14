@@ -442,4 +442,3 @@ Custom_dataset
 Now everything is ready to start the training.
 
 **Note:** For maintaing the dataset folders clean, after finishing all the above procedures, craete a folder **Tagged date** for ex: "Sep11", move manually **JPEGImages, Annotations, TFRecords, final_csv, train, val** folders to the **Tagged date** folder.
-
