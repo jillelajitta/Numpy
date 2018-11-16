@@ -4,7 +4,7 @@
 
 1. **model_main.py:** It evaluates the model for every checkpoint it generated. Basically it generates checkpoint for every 1200k steps with batch size of 32,
 
-	Below data is based on 350k steps on COCO metrics.
+   Below data is based on 350k steps on COCO metrics.
 	Total Evals: 292
 ```
 	Train 98% + Val 2%			4 days approx.
