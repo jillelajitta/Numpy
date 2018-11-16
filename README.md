@@ -37,19 +37,90 @@ Below data is based on 350k steps on COCO metrics.
 
 List of items needed for training the algorithm:
 1. TFRecords for train and validation
-2. honda_custom_label.pbtxt
+2. label_map file
 3. Configuration file 
 
 Recommended folder format for training
 
 ```
-+data
-  -label_map file
-  -train TFRecord file
-  -val TFRecord file
-+models
-  + model
-    -pipeline config file
-    +train
-    +eval
+    --SSD
+	--train.py
+	--eval.py
+	--model_main.py
+	--export_inference_graph.py
+	--labels.txt
+	+data
+	  -label_map file
+	  -train TFRecord file
+	  -val TFRecord file
+	+models
+	  + model
+	    -Configuration file 
+	    +train
+	    +eval
+```
+
+Please copy all the generated train and val tfrecords manually to **data** folder. 
+
+### Creating labelmap
+
+To generate label map use **label_map_generator.py** file. You can find **label_map_generator.py** in githuib repo **./CDCA/training/**. In order to execute this file you need to have **labels.txt**, **labels.txt** should include all the list of objects you are going to train. Be careful while listing the objects in **labels.txt**. Please copy label_map_generator.py, labels.txt files to SSD folder.
+
+For CDCA
+```
+#From ./SSD/
+
+python label_map_generator.py --name "honda_custom_label.pbtxt" --path "./labels.txt"
+
+```
+
+### Script for training the model with train.py
+
+```
+#From ./SSD/
+
+python train.py \
+        --logtostderr \
+        --train_dir=path/to/train_dir \
+        --pipeline_config_path=pipeline_config.pbtxt
+
+```
+
+### Script for evaluating model with eval.py
+
+```
+#From ./SSD/
+
+python eval.py \
+        --logtostderr \
+        --checkpoint_dir=path/to/checkpoint_dir \
+        --eval_dir=path/to/eval_dir \
+        --pipeline_config_path=pipeline_config.pbtxt
+```
+
+###Script for training with model_main.py
+
+```
+#From ./SSD/
+
+python object_detection/model_main.py \
+    --pipeline_config_path=${PIPELINE_CONFIG_PATH} \
+    --model_dir=${MODEL_DIR} \
+    --num_train_steps=${NUM_TRAIN_STEPS} \
+    --sample_1_of_n_eval_examples=$SAMPLE_1_OF_N_EVAL_EXAMPLES \
+    --alsologtostderr
+
+```
+
+### Freezing the trained weights
+After you are done with the training, you need to freeze the weights. Use the below script to freeze the weights.
+
+```
+#From ./SSD/
+
+python export_inference_graph.py \
+    --input_type image_tensor \
+    --pipeline_config_path path/to/ssd_inception_v2.config \
+    --trained_checkpoint_prefix path/to/model.ckpt \
+    --output_directory path/to/exported_model_directory
 ```
