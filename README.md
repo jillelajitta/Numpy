@@ -35,6 +35,11 @@ Below data is based on 350k steps on COCO metrics.
 
 ### Arranging the things for training
 
+List of items needed for training the algorithm:
+1. TFRecords for train and validation
+2. honda_custom_label.pbtxt
+3. Configuration file 
+
 Recommended folder format for training
 
 ```
