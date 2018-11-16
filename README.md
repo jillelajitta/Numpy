@@ -64,7 +64,7 @@ Please copy all the generated train and val tfrecords manually to **data** folde
 
 ### Creating labelmap
 
-To generate label map use **label_map_generator.py** file. You can find **label_map_generator.py** in githuib repo **./CDCA/training/**. In order to execute this file you need to have **labels.txt**, **labels.txt** should include all the list of objects you are going to train. Be careful while listing the objects in **labels.txt**. Please copy label_map_generator.py, labels.txt files to SSD folder.
+To generate label map use **label_map_generator.py** file.  In order to execute this file you need to have **labels.txt**, **labels.txt** should include all the list of objects you are going to train. Be careful while listing the objects in **labels.txt**. You can find **label_map_generator.py** & **labels.txt** in githuib repo **./CDCA/training/**. Please copy label_map_generator.py, labels.txt files to SSD folder.
 
 For CDCA
 ```
@@ -98,7 +98,7 @@ python eval.py \
         --pipeline_config_path=pipeline_config.pbtxt
 ```
 
-###Script for training with model_main.py
+### Script for training with model_main.py
 
 ```
 #From ./SSD/
