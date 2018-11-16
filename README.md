@@ -4,7 +4,7 @@
 
 1. **model_main.py:** It evaluates the model for every checkpoint it generated. Basically it generates checkpoint for every 1200k steps with batch size of 32,
 <pre>
-	Below data is based on 350k steps on COCO metrics
+	Below data is based on 350k steps on COCO metrics.
 	Total Evals: 292
 
 	Train 98% + Val 2%			4 days approx.
@@ -14,14 +14,15 @@
 
 2. **train.py** & **eval.py** are two separate legacy files
 <pre>
-	**Below data is based on 350k steps on COCO metrics.**
+	Below data is based on 350k steps on COCO metrics.
 
 	Train 70 %			~3 days 
 	Val 30%				Evaluating for every 20k steps i;e total 18 evals for 350k steps-> 3-4 days
 
 	Total Training			~6-7 days.
-
-	**Below data is based on 350k steps on Pascal & Open Images V2 detection metrics.**
+</pre>
+<pre>
+	Below data is based on 350k steps on Pascal & Open Images V2 detection metrics.
 
 	Train 70 %			~3 days 
 	Val 30%				Evaluating for every 20k steps i;e total 18 evals for 350k steps-> 2-3 days
