@@ -8,8 +8,8 @@ Below data is based on 350k steps on COCO metrics.
 	Total Evals: 292
 ```
 	Train 98% + Val 2%			4 days approx.
-	Train 70%+Val 30%			48 days approx. (~4 hours for each evaluation)
-	Train 90%+ Val 10%		  	16 days approx.
+	Train 70% + Val 30%			48 days approx. (~4 hours for each evaluation)
+	Train 90% + Val 10%		  	16 days approx.
 ```
 
 2. **train.py** & **eval.py** are two separate legacy files
@@ -31,3 +31,18 @@ Below data is based on 350k steps on COCO metrics.
 	Total Training			~5-6 days.
 ```
 **Note:** Based on testing, our computer is unable to handle COCO evaluation on VAL30%. CPU utilization is going very high. Pascal & Open Images V2 detection metric evaluation is going good. We choose Open Images V2 detection metric because most of the CDCA dataset is from OPEN IMAGES.
+
+
+### Arranging the things for training
+
+```
++data
+  -label_map file
+  -train TFRecord file
+  -val TFRecord file
++models
+  + model
+    -pipeline config file
+    +train
+    +eval
+```
