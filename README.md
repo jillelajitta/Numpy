@@ -23,6 +23,7 @@
 ```
 
 	Below data is based on 350k steps on Pascal & Open Images V2 detection metrics.
+	
 ```
 	Train 70 %			~3 days 
 	Val 30%				Evaluating for every 20k steps i;e total 18 evals for 350k steps-> 2-3 days
