@@ -35,6 +35,8 @@ Below data is based on 350k steps on COCO metrics.
 
 ### Arranging the things for training
 
+Recommended folder format for training
+
 ```
 +data
   -label_map file
