@@ -2,7 +2,7 @@
 
 ### Report on Training times
 
-1. **model_main.py:** It evaluates the model for every checkpoint it generated. Basically it generates checkpoint for every 1200k steps with batch size of 32,
+1. **model_main.py:** It evaluates the model for every checkpoint it generated. Basically it generates checkpoint for every 1200k steps with batch size of 32.
 
 Below data is based on 350k steps on COCO metrics.
 	Total Evals: 292
@@ -67,6 +67,7 @@ def main(unused_argv):
 **Note:** For CDCA, we used save_checkpoints_steps = 20000, keep_checkpoint_max = 40, so the checkpoint is generated for every 20k steps and saves the latest 40 checkpoints.
 
 **4. If customized model_main.py fails with coco evaluation(backup solution)**
+
 As we noticed original model_main.py is failing with COCO evaluation on our machine, we customized the model_main.py to make it work.
 
 What if customized model_main.py also fails with coco evaluation? We have a backup plan.
